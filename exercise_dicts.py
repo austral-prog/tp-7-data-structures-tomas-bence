@@ -279,6 +279,11 @@ def sum_expenses_by_type(gastos):
     """
     resultado = {}
 
-    for categoria, lista in gastos.items():
-        for tipo, monto in lista:
-            resultado[tipo] = resultado.get(tipo, 0) + monto
+    for categoria in gastos:
+        for tipo, monto in gastos[categoria]:
+            if tipo in resultado:
+                resultado[tipo] = resultado[tipo] + monto
+            else:
+                resultado[tipo] = monto
+
+    return resultado
